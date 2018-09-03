@@ -1,1 +1,3 @@
-fileGen
+# FileGenerator 
+Given the number of files, the maximum number of words that can be contained in a file, a dictionary written line by line as **parole.txt** and the number of lines contained in the dictionary. Generate files containing at most the number of words specified in the dictionary, the name all the generated files is written in **index.txt**.  
+The used dictionaries can be found [here](https://github.com/napolux/paroleitaliane).

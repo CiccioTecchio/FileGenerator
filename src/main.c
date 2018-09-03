@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 int numFile;
 int maxWord;
@@ -29,7 +28,7 @@ int main (int argc, char* argv[]){
 			int rowNum = rand() % line +1;
 			int index=0;	
 			char buf[50];
-			while(index < rowNum ){
+			while(index < rowNum){
 				fscanf(fpw,"%s",buf);			
 				index++;
 			}
@@ -56,4 +55,5 @@ void checkArgs(int argc, char* argv[]){
 			printf("Make sure that:\n1)the number of files is positive;\n2)the maximum number of words per file is positive;\n3)the file exists;\n4)the number of dictionary words is positive.\n");
 			exit(0);
 			}
-	}}
+	}
+}
