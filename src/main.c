@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 int numFile;
 int maxWord;
+FILE *fpw;
+int line;
 
 void checkArgs(int argc, char* argv[]);
 
@@ -10,10 +13,9 @@ void checkArgs(int argc, char* argv[]);
 int main (int argc, char* argv[]){
 	checkArgs(argc,argv);
 	FILE *fp;
-	FILE *fpw;
 	FILE *fpi;
 
-	fpw = fopen("parole.txt","r");
+
 	fpi = fopen("index.txt","w");
 
 	for(int i=0; i < numFile; i++ ){
@@ -24,7 +26,7 @@ int main (int argc, char* argv[]){
 		int numWord = rand() % maxWord + 1;
 		
 		for(int j=0;j<numWord;j++){
-			int rowNum = rand() % 1160 +1;
+			int rowNum = rand() % line +1;
 			int index=0;	
 			char buf[50];
 			while(index < rowNum ){
@@ -42,14 +44,16 @@ int main (int argc, char* argv[]){
 }
 
 void checkArgs(int argc, char* argv[]){
-	if(argc!=3){
-		printf("Enter <number of files to generate> and <maximum number of words for each file>\n");
+	if(argc!=5){
+		printf("Enter <number of files to generate> <maximum number of words for each file> <dictionary name> <line of dictionary>\n");
 		exit(0);
 	}else{
 				numFile = atoi(argv[1]);
 				maxWord = atoi(argv[2]);
-			if(numFile <= 0 && maxWord <= 0){					
-				printf("The number of files or the maximum number of words per file can only be positive\n");
-				exit(0);
+				fpw = fopen(argv[3],"r");
+				line = atoi(argv[4]);
+			if(numFile <= 0 || maxWord <= 0 || line <= 0 || !fpw){
+			printf("Make sure that:\n1)the number of files is positive;\n2)the maximum number of words per file is positive;\n3)the file exists;\n4)the number of dictionary words is positive.\n");
+			exit(0);
 			}
 	}}
